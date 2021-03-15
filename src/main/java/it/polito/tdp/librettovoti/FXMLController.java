@@ -40,8 +40,18 @@ public class FXMLController {
     	
     	String nomeEsame = txtEsame.getText();
     	
+    	if(nomeEsame.isBlank()) {
+    		txtResult.setText("ERRORE: nome esame vuoto");
+    		return;
+    	}
+    	
     	String votoEsame = txtVoto.getText();
-    	int votoInt = Integer.parseInt(votoEsame);
+    	int votoInt = 0;
+    	try {
+    		votoInt = Integer.parseInt(votoEsame);
+    	}catch(Exception e){
+    		txtResult.setText("ERRORE: inserire un valore numerico come voto");
+    	}
     	
     	String dataEsameString = txtData.getText();
     	LocalDate data = LocalDate.parse(dataEsameString);
