@@ -5,7 +5,7 @@ import java.util.*;
 public class Libretto {
 
 	private List<Voto> voti;
-	private Map<String, Voto> mappaVoti;
+	private Map<String, Voto> mappaVoti; 		// < nomeEsame , obj Voto >
 	
 	private List<Voto> migliorato;
 	private List<Voto> ordinato;
@@ -60,20 +60,16 @@ public class Libretto {
 		return risultato;
 	}
 	
-	public int cercaVoto(String materia) {
+	public Voto cercaVoto(String materia) {
 		
-		for(Voto v : voti) 
-			if(v.getNomeCorso().equals(materia))
-				return v.getVoto();					// stesso oggetto ora e' in due liste diverse
-		
-		return 0;
+		return this.mappaVoti.get(materia);
 	}
 	
 	public boolean votoEsistente(Voto v) {
 		
-		Voto corso = mappaVoti.get(v.getNomeCorso());
+		Voto vPresente = mappaVoti.get(v.getNomeCorso());
 		
-		if(corso != null && corso.getVoto() == v.getVoto() && corso.getNomeCorso().equals(v.getNomeCorso()))
+		if(vPresente != null && vPresente.getVoto() == v.getVoto())
 				return true;
 		
 		return false;
@@ -82,9 +78,9 @@ public class Libretto {
 	
 	public boolean conflitto(Voto v) {
 		
-		Voto corso = mappaVoti.get(v.getNomeCorso());
+		Voto vPresente = mappaVoti.get(v.getNomeCorso());
 		
-		if(corso != null && corso.getVoto() != v.getVoto() && corso.getNomeCorso().equals(v.getNomeCorso()))
+		if(vPresente != null && vPresente.getVoto() != v.getVoto() )
 				return true;
 		
 		return false;

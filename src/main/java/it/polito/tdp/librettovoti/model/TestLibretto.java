@@ -28,8 +28,8 @@ public class TestLibretto {
 		
 		String materia = "Informatica";
 		System.out.println("3. Cerco il voto ottenuto nel corso di " + materia + "\n");
-		int voto = libretto.cercaVoto(materia);
-		System.out.println("Voto: "+ voto + "\n");
+		Voto voto = libretto.cercaVoto(materia);
+		System.out.println(voto.toString() + "\n");
 		
 		System.out.println("4. Creo nuovo voto, verifico se esiste \n");
 		Voto nuovo = new Voto("Informatica", 30, LocalDate.of(2019, 2, 18));
